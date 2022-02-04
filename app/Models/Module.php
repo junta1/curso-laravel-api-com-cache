@@ -9,7 +9,7 @@ class Module extends Model
 {
     use HasFactory;
 
-    protected $fillabel = ['name', 'course_id'];
+    protected $fillable = ['name', 'course_id'];
 
     //many-to-one
     public function course()

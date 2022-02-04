@@ -23,7 +23,7 @@ class ModuleRepository
     public function createNewModule(int $courseId, array $data)
     {
         $data['course_id'] = $courseId;
-
+        
         return $this->entity->create($data);
     }
 

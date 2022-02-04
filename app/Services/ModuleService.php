@@ -30,7 +30,7 @@ class ModuleService
     public function createNewModule(array $data)
     {
         $course = $this->getCourse($data['course']);
-
+        
         return $this->moduleRepository->createNewModule($course->id, $data);
     }
 
