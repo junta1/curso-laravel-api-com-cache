@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Api\{
     CourseController,
-    ModuleController
+    ModuleController,
+    LessonController
 };
 use Illuminate\Support\Facades\Route;
+
+Route::apiResource('/modules/{module}/lessons', LessonController::class);
 
 Route::apiResource('/courses/{course}/modules', ModuleController::class);
 
@@ -15,5 +18,5 @@ Route::delete('/courses/{identify}', [CourseController::class, 'destroy']);
 Route::put('/courses/{course}', [CourseController::class, 'update']);
 
 Route::get('/', function () {
-    return response()->json(['message' => 'ok']);
+    return response()->json(['message' => 'success']);
 });

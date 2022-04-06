@@ -32,7 +32,7 @@ class ModuleRepository
         return $this->entity
             ->where('course_id', $courseId)
             ->where('uuid', $identify)
-            ->get();
+            ->firstOrfail();
     }
 
     public function updateModuleByUuid(int $courseId, string $identify, array $data)
@@ -55,6 +55,6 @@ class ModuleRepository
     {
         return $this->entity
             ->where('uuid', $identify)
-            ->get();
+            ->firstOrfail();
     }
 }
