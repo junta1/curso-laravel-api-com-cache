@@ -50,7 +50,7 @@ class CourseController extends Controller
     public function show($identify)
     {
         $course = $this->courseService->getCourse($identify);
-
+        
         return new CourseResource($course);
     }
 
