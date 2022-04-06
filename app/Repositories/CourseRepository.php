@@ -30,15 +30,20 @@ class CourseRepository
 
     public function getCourseByUuid(string $identify, bool $loadRelationsships = true)
     {
-        return $this->entity
-            ->where('uuid', $identify)
-            ->with([$loadRelationsships ? 'modules.lessons' : ''])
-            ->firstOrFail();
+        $query =  $this->entity->where('uuid', $identify);
+
+        if($loadRelationsships){
+            $query->with('modules.lessons');
+        }
+            
+        return $query->firstOrFail();
     }
     
     public function deleteCourseByUuid(string $identify)
     {
         $course = $this->getCourseByUuid($identify, false);
+
+        Cache::forget('courses');
 
         return $course->delete();
     }
@@ -47,8 +52,8 @@ class CourseRepository
     {
         $course = $this->getCourseByUuid($identify, false);
 
+        Cache::forget('courses');
+
         return $course->update($data);
     }
 }
-
-?>
